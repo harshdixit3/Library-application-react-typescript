@@ -1,6 +1,12 @@
-import { faStar, faStarHalf, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faStar,
+  faStarHalf,
+  faStarHalfAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as faStarEmpty } from "@fortawesome/free-regular-svg-icons";
+
+import "./Rating.css";
 
 type Props = {
   size: "sm" | "md" | "lg";
@@ -15,24 +21,25 @@ const Rating = ({ size, color, value, numRatings }: Props) => {
   const emptyStar = 5 - (fullStars - halfStars);
 
   return (
-    <span>
-     
-     {Array(fullStars)
-        .fill(1)
-        .map((item) => (
-          <FontAwesomeIcon icon={faStar} />
-        ))}
-         {Array(halfStars)
-        .fill(1)
-        .map((item) => (
-          <FontAwesomeIcon icon={faStarHalfAlt} />
-        ))}
-         {Array(emptyStar)
-        .fill(1)
-        .map((item) => (
-          <FontAwesomeIcon icon={faStarEmpty} />
-        ))}
-       ({value} ({numRatings}) rated) 
+    <span className={`rating${size}`}>
+      <span style={{color:color}}>
+        {Array(fullStars)
+          .fill(1)
+          .map((item) => (
+            <FontAwesomeIcon icon={faStar} />
+          ))}
+        {Array(halfStars)
+          .fill(1)
+          .map((item) => (
+            <FontAwesomeIcon icon={faStarHalfAlt} />
+          ))}
+        {Array(emptyStar)
+          .fill(1)
+          .map((item) => (
+            <FontAwesomeIcon icon={faStarEmpty} />
+          ))}
+      </span>
+      ({value} ({numRatings}) rated)
     </span>
   );
 };
